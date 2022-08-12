@@ -25,9 +25,15 @@ To setup the google spreadsheet
 7.2 Set Access as "Anyone"
 <img width="772" alt="image" src="https://user-images.githubusercontent.com/4183879/184265979-0d4ef43e-d9e3-4735-9b70-14c8f066d34f.png">
 7.3 Deploy the code
+
 7.4 Copy the WebApp URL 
+
+<img width="657" alt="image" src="https://user-images.githubusercontent.com/4183879/184266515-a78eed1d-c24b-45e7-832f-e6484ec88fed.png">
 8. On the main.py set the variable sheetURL to the new URL from the WebApp
+
 9. Set the wifi SSID and Password on main.py
+
 10. Upload the code to the Raspberry pi pico
+
 
 The Temperature will be logged every 5 min
