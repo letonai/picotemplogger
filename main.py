@@ -19,32 +19,30 @@ button_a = Button(12)
 button_b = Button(13)
 button_x = Button(14)
 button_y = Button(15)
-display.set_backlight(.3)
-display.set_font("serif")
 
 WHITE = display.create_pen(255, 255, 255)
 BLACK = display.create_pen(0, 0, 0)
-sheetURL="https://script.google.com/macros/s/AKfycbwr12k7DzDAM5Woy-jNo7ZvXdSrL6Ekqb_Bk7-gF0xRcP2UzZ3jMBA9JS2WJE-w_vlqxA/exec?temp="
+
+sheetURL="<Spreadhseet public url>"
 timeURL="https://timeapi.io/api/Time/current/zone?timeZone=America/Vancouver"
 
+display.set_backlight(.3)
+display.set_font("serif")
 
 def getTime():
     res=urequests.get(url=timeURL)
     time=json.loads(res.text)["dateTime"]
     res.close()
     return time
-# sets up a handy function we can call to clear the screen
+    
 def clear():
     display.set_pen(BLACK)
     display.clear()
 
-
 def getTemp():
-    print(str(sensor_temp.read_u16()*3.3/65535))
-    #conversion_factor = 3.3033 / (65535)
     conversion_factor = 3.3 / (65535)
     reading = sensor_temp.read_u16() * conversion_factor
-    temperature = 17 - (reading - 0.710) / 0.001721
+    temperature = 17 - (reading - 0.710) / 0.001721 #Personal voltage calibration based on other termometers
     return "{:.1f}".format(temperature)+"C"
 
 def connectWifi():
@@ -101,7 +99,7 @@ while True:
         led.set_rgb(0,1,0)
     elif button_x.read():
         sendToSpreadsheet(str(getTime()+","+getTemp()))
-        
+
     if lastrun>360:
         sendToSpreadsheet(str(getTime()+","+getTemp()))
         lastrun=0
