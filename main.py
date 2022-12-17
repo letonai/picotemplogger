@@ -63,8 +63,8 @@ def connectWifi():
 def sendToSpreadsheet(wifi):
     try:
         led.set_rgb(1,1,0)
-        print(sheetURL+wifi)
-        res=urequests.get(url=sheetURL+wifi)
+        print(sheetURL+"?temp="+wifi)
+        res=urequests.get(url=sheetURL+"?temp="+wifi)
         res.close()
         gc.collect()
         
